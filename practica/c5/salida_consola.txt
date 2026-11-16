@@ -1,0 +1,31 @@
+Verificando que cada competidor ordene correctamente...
+  OK  Insercion
+  OK  MergeSort
+  OK  QuickSort
+  OK  sort() Python
+
+n = 10.000
+  Insercion           1944.40 ms   (1931.2, 1950.8, 1951.1)
+  MergeSort             21.17 ms   (21.3, 21.4, 20.8)
+  QuickSort             15.79 ms   (15.6, 16.1, 15.6)
+  sort() Python          0.90 ms   (0.9, 1.0, 0.9)
+
+n = 20.000
+  Insercion           7649.37 ms   (7669.0, 7611.2, 7667.9)
+  MergeSort             46.21 ms   (46.2, 46.5, 45.9)
+  QuickSort             34.81 ms   (34.1, 37.1, 33.2)
+  sort() Python          1.96 ms   (2.1, 1.9, 1.9)
+
+n = 40.000
+  Insercion          34344.02 ms   (33525.5, 33896.0, 35610.6)
+  MergeSort            102.16 ms   (101.5, 100.8, 104.2)
+  QuickSort             73.94 ms   (75.1, 74.1, 72.6)
+  sort() Python          4.25 ms   (4.2, 4.3, 4.2)
+
+n = 80.000
+  Insercion         206691.44 ms   (209565.8, 211991.5, 198517.0)
+  MergeSort            237.03 ms   (216.7, 237.6, 256.8)
+  QuickSort            166.04 ms   (167.8, 166.2, 164.0)
+  sort() Python         11.09 ms   (10.3, 12.5, 10.5)
+
+Guardado: resultados.csv y resultados.md
