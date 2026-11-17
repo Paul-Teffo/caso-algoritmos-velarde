@@ -1,17 +1,11 @@
 # Paul Steffano Velarde Chuquimia
-# PARCIAL 1 - VARIANTE B - "Registro de comprobantes"  (portado de examen-p1-B.cs a Python)
-# Problema: dada una lista de comprobantes de pago, ¿hay alguno repetido?
-# Uso:  python medicion.py casos   -> corre los 5 casos de prueba
-#       python medicion.py medir   -> mide las dos soluciones con el protocolo
-#       python medicion.py         -> las dos cosas
 
 import random
 import sys
 import time
 
 
-# Solución ACTUAL (lenta): comparar cada comprobante con todos los que le siguen.
-# Misma lógica que el C#: dos ciclos anidados -> n(n-1)/2 comparaciones en el peor caso -> O(n²)
+
 def hay_comprobantes_repetidos_por_pares(comprobantes):
     n = len(comprobantes)
     for a in range(n):
@@ -21,9 +15,6 @@ def hay_comprobantes_repetidos_por_pares(comprobantes):
     return False
 
 
-# MI CURA: un recorrido guardando lo ya visto en un conjunto (set).
-# Preguntar "¿ya lo vi?" en un set cuesta O(1) promedio -> n consultas -> O(n).
-# No modifica la lista que recibe: solo la lee.
 def hay_comprobantes_repetidos_curado(comprobantes):
     vistos = set()
     for c in comprobantes:
@@ -33,8 +24,6 @@ def hay_comprobantes_repetidos_curado(comprobantes):
     return False
 
 
-# El PEOR CASO para las dos: una lista SIN repetidos (hay que mirarlo todo).
-# Valores 1000..1000+n-1 (todos distintos) desordenados con shuffle y semilla fija.
 def generar_sin_repetidos(n, semilla=77):
     datos = [1000 + i for i in range(n)]   # 1000, 1001, ..., sin repetidos
     azar = random.Random(semilla)          # semilla fija: siempre la misma mezcla
@@ -42,7 +31,7 @@ def generar_sin_repetidos(n, semilla=77):
     return datos
 
 
-# Los cinco casos que la cura debe pasar (la esperada va a la derecha).
+
 CASOS = [
     ([1010, 1003, 1009, 1003, 1005], True, "repetido en el medio"),
     ([1010, 1003, 1009, 1004, 1005], False, "sin repetidos"),
@@ -68,15 +57,14 @@ def correr_casos():
     print()
 
 
-# PROTOCOLO: 1 corrida de calentamiento + 3 corridas medidas + promedio.
 def medir(funcion, datos, corridas=3):
-    funcion(datos)                            # calentamiento (no se cuenta)
+    funcion(datos)
     suma = 0.0
     for _ in range(corridas):
         inicio = time.perf_counter()
         funcion(datos)
         suma += time.perf_counter() - inicio
-    return suma / corridas * 1000             # promedio en milisegundos
+    return suma / corridas * 1000
 
 
 def correr_medicion(tamanos=(2_000, 4_000, 8_000, 16_000)):
