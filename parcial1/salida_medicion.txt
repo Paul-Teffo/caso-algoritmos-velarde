@@ -1,0 +1,13 @@
+Paul Steffano Velarde Chuquimia
+Salida de: python medicion.py medir  (Python 3.14.3, Windows 11)
+
+MEDICIÓN EN EL PEOR CASO (lista sin repetidos)
+PROTOCOLO: 1 corrida de calentamiento + 3 corridas medidas + promedio
+       n   por pares (ms)   x ant.   curado (ms)   x ant.
+   2,000           132.66        —        0.2360        —
+   4,000           392.25    x2.96        0.5412    x2.29
+   8,000          1585.31    x4.04        1.1142    x2.06
+  16,000          6613.56    x4.17        1.2102    x1.09
+
+Si por pares es O(n²), al duplicar n el tiempo debería subir ~x4.
+Si la cura es O(n), al duplicar n el tiempo debería subir ~x2.
