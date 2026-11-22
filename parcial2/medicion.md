@@ -25,6 +25,8 @@ Con n = 10 000, la ingenua tarda **≈ 570 veces más** que la mejorada (7 477,6
 
 ## Conclusión
 
-- **La ingenua se comporta como O(n²)** (n atenciones de O(n) cada una). Al duplicar n el tiempo se multiplica por ≈ 4,3, cerca del ×4 esperado. El poco de más se explica porque `pop(i)` también mueve elementos y porque la lista ya no cabe tan bien en la caché.
-- **La mejorada se comporta como O(n log n)** (n operaciones de O(log n) cada una). Al duplicar n el tiempo se multiplica por ≈ 2,1–2,4, cerca del ×2,1 esperado. La brecha con la ingenua crece con n: ×156 con n = 2 500 y ×570 con n = 10 000.
-- **Ruido:** dentro de cada fila las corridas varían hasta un 30 % en la mejorada (2,26 a 3,11 ms) y un 13 % en la ingenua (7 055 a 7 992 ms), por otros procesos de Windows y por el recolector de basura de Python. Con tiempos de pocos ms el ruido pesa más, así que el ×2,42 de la mejorada no indica un crecimiento peor que n log n. Por eso se promedian 3 corridas después del calentamiento. Aun así, el ruido no cambia la conclusión: las diferencias medidas son de dos órdenes de magnitud.
+-La ingenua es O(n²): porque tiene que buscar al siguiente paciente en cada atención. Al duplicar la cantidad de pacientes, el tiempo aumenta aproximadamente 4 veces, como se esperaba.
+
+-La mejorada es O(n log n): utiliza el heap para organizar las atenciones. Al duplicar los pacientes, el tiempo aumenta aproximadamente entre 2 y 2,4 veces. También se nota que la diferencia frente a la ingenua aumenta cuando hay más pacientes.
+
+-Ruido en las mediciones: los tiempos cambian un poco entre cada prueba, principalmente porque otros procesos de Windows pueden afectar las mediciones. Por eso se realizaron 3 pruebas y se calculó el promedio. A pesar de esas variaciones, la diferencia entre ambas soluciones sigue siendo bastante grande.
