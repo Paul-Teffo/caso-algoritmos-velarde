@@ -2,7 +2,7 @@
 
 # P2.1 · Elegir: turnos de una clínica (variante A)
 
-Código en [`turnos.py`](turnos.py) (versión limpia) y [`turnos_explicado.py`](turnos_explicado.py) (la misma, con comentarios).
+Código en [`turnos.py`](turnos.py).
 
 ## Estructura y costo de cada operación
 
