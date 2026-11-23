@@ -1,0 +1,17 @@
+Contraejemplo (límite 120 s)
+  voraz:        8
+  fuerza bruta: 12
+  dinámica:     12
+
+Verificación con 300 grupos de 12 preguntas al azar
+  dinámica distinta de fuerza bruta: 0 de 300
+  voraz peor que el óptimo, tiempos distintos: 71 de 300
+  voraz peor que el óptimo, 60 s fijos: 0 de 300
+
+Fuerza bruta vs dinámica (ms, 1 calentamiento + 3 corridas)
+  n  límite   F. bruta  Veces  Dinámica  Veces  Óptimo  Voraz
+ 16    787s      103.9      -      1.79      -      65     65
+ 18    925s      469.6    4.5      2.44    1.4      81     80
+ 20   1017s     2103.1    4.5      2.96    1.2      77     76
+ 22    970s     9155.0    4.4      2.97    1.0     100    100
+

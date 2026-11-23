@@ -4,7 +4,7 @@
 // reales (base h1_medicion_tmp, que se borra al terminar). La base plataforma_med no se modifica.
 //
 // Protocolo: calentar -> repetir -> promediar -> escalar -> mismas condiciones.
-// Uso: C:\xampp\php\php.exe h1\medir.php
+// Uso: C:\xampp\php\php.exe hitos\h1\medir.php
 declare(strict_types=1);
 
 const ORIGEN = 'plataforma_med';
@@ -233,30 +233,31 @@ conectar(null)->exec('DROP DATABASE IF EXISTS ' . BD);
 
 // --- Reporte -----------------------------------------------------------------
 $f = fn (float $x) => number_format($x, 2, ',', '.');
-$md = "# Mediciones del proceso actual - H1\n\n"
-    . "Generado por `C:\\xampp\\php\\php.exe h1\\medir.php` el " . date('Y-m-d H:i') . ".\n\n"
-    . "## Condiciones\n\n"
-    . "- XAMPP local: PHP " . PHP_VERSION . ", MariaDB $version (`innodb_flush_log_at_trx_commit=$flush`), "
-    . php_uname('s') . ' ' . php_uname('r') . ', ' . (getenv('PROCESSOR_IDENTIFIER') ?: php_uname('m')) . "\n"
-    . "- Datos: copia de las tablas reales de `plataforma_med` (" . $contar(TODAS) . " preguntas, 5 materias)\n"
-    . "- Se ejecutan las mismas consultas SQL que genera `SimulacroController` (`show` y `evaluar`); "
-    . "no se incluye el arranque de Laravel ni el render de la vista, así que el tiempo real es **mayor**\n"
-    . "- Protocolo: " . CALENTAMIENTOS . " calentamientos + " . REPETICIONES . " repeticiones por punto; "
-    . "usuarios simultáneos: " . REPETICIONES_CONCURRENCIA . " repeticiones, procesos PHP en paralelo con arranque sincronizado\n\n"
-    . "## 1. Escalando k (preguntas pedidas), todas las materias (n = " . $contar(TODAS) . ")\n\n"
-    . "| k | Generar examen `show` (ms) | desv | Corregir `evaluar` (ms) | desv | Consultas en `evaluar` |\n"
+$md = "Paul Steffano Velarde Chuquimia\n\n"
+    . "**<ins>Mediciones del proceso actual (H1)</ins>**\n\n"
+    . "Generado con C:\\xampp\\php\\php.exe hitos\\h1\\medir.php el " . date('Y-m-d H:i') . ".\n\n"
+    . "**<ins>Condiciones</ins>**\n\n"
+    . "- XAMPP local: PHP " . PHP_VERSION . ", MariaDB $version (innodb_flush_log_at_trx_commit=$flush), "
+    . php_uname('s') . ' ' . php_uname('r') . ', ' . (getenv('PROCESSOR_IDENTIFIER') ?: php_uname('m')) . ".\n"
+    . "- Datos: copia de las tablas reales de plataforma_med (" . $contar(TODAS) . " preguntas, 5 materias).\n"
+    . "- Se ejecutan las mismas consultas SQL que hace SimulacroController (show y evaluar). "
+    . "No se incluye el arranque de Laravel ni la vista, así que el tiempo real es mayor.\n"
+    . "- Protocolo: " . CALENTAMIENTOS . " calentamientos y " . REPETICIONES . " repeticiones por punto. "
+    . "Usuarios simultáneos: " . REPETICIONES_CONCURRENCIA . " repeticiones, con procesos PHP en paralelo.\n\n"
+    . "**<ins>1. Cambiando k (preguntas pedidas), todas las materias (n = " . $contar(TODAS) . ")</ins>**\n\n"
+    . "| k | Generar examen, show (ms) | desv | Corregir, evaluar (ms) | desv | Consultas en evaluar |\n"
     . "|---:|---:|---:|---:|---:|---:|\n";
 foreach ($filasK as $r) {
     $md .= "| {$r['k']} | {$f($r['show']['media'])} | {$f($r['show']['desv'])} | {$f($r['evaluar']['media'])} | "
         . "{$f($r['evaluar']['desv'])} | " . (2 * $r['k'] + 2) . " |\n";
 }
-$md .= "\n## 2. Escalando n (preguntas de las materias elegidas), k = 100\n\n"
-    . "| Materias | n | Generar examen `show` (ms) | desv |\n|---|---:|---:|---:|\n";
+$md .= "\n**<ins>2. Cambiando n (preguntas de las materias elegidas), k = 100</ins>**\n\n"
+    . "| Materias | n | Generar examen, show (ms) | desv |\n|---|---:|---:|---:|\n";
 foreach ($filasN as $r) {
     $md .= "| {$r['materias']} | {$r['n']} | {$f($r['show']['media'])} | {$f($r['show']['desv'])} |\n";
 }
-$md .= "\n## 3. Usuarios simultáneos, examen de 100 preguntas (todas las materias)\n\n"
-    . "| Usuarios | `show` media (ms) | `show` peor (ms) | `evaluar` media (ms) | `evaluar` peor (ms) | Consultas totales |\n"
+$md .= "\n**<ins>3. Usuarios simultáneos, examen de 100 preguntas (todas las materias)</ins>**\n\n"
+    . "| Usuarios | show media (ms) | show peor (ms) | evaluar media (ms) | evaluar peor (ms) | Consultas totales |\n"
     . "|---:|---:|---:|---:|---:|---:|\n";
 foreach ($filasU as $r) {
     $md .= "| {$r['u']} | {$f($r['show']['media'])} | {$f($r['show']['max'])} | {$f($r['evaluar']['media'])} | "

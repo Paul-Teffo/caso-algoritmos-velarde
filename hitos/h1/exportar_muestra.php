@@ -28,4 +28,4 @@ foreach ($materias as $m) {
 }
 fclose($salida);
 
-echo count($filas) . " filas exportadas a h1/muestra_preguntas.csv\n";
+echo count($filas) . " filas exportadas a hitos/h1/muestra_preguntas.csv\n";
