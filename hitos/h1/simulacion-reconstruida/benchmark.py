@@ -13,8 +13,8 @@ Protocolo del curso:
     y los mismos datos de entrada
 
 Uso:
-  python h1/benchmark.py            # corre todo y escribe h1/resultados.md y h1/resultados.csv
-  python h1/benchmark.py --rapido   # menos repeticiones, para probar
+  python hitos/h1/simulacion-reconstruida/benchmark.py            # corre todo y escribe resultados.md y resultados.csv en su carpeta
+  python hitos/h1/simulacion-reconstruida/benchmark.py --rapido   # menos repeticiones, para probar
 """
 import argparse
 import csv
@@ -382,7 +382,7 @@ def main():
     )
     md = (
         "# Tabla de mediciones - H1\n\n"
-        "Generado por `python h1/benchmark.py`. Tiempos en milisegundos (media de las repeticiones).\n"
+        "Generado por `python hitos/h1/simulacion-reconstruida/benchmark.py`. Tiempos en milisegundos (media de las repeticiones).\n"
         "**Exponente** = pendiente log-log entre una fila y la anterior: ~0 constante, ~1 lineal, ~2 cuadratico.\n\n"
         f"## Condiciones\n\n{entorno}\n"
         "## Resultados\n\n"

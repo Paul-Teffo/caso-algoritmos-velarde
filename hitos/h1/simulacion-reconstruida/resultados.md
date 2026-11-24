@@ -1,6 +1,6 @@
 # Tabla de mediciones - H1
 
-Generado por `python h1/benchmark.py`. Tiempos en milisegundos (media de las repeticiones).
+Generado por `python hitos/h1/simulacion-reconstruida/benchmark.py`. Tiempos en milisegundos (media de las repeticiones).
 **Exponente** = pendiente log-log entre una fila y la anterior: ~0 constante, ~1 lineal, ~2 cuadratico.
 
 ## Condiciones
