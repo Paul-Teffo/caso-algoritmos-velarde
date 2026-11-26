@@ -10,11 +10,11 @@ Es el simulacro de repaso con tiempo límite explicado en estrategia.md: elegir 
 - Programación dinámica: llena la tabla de la mochila, donde cada casilla es el mejor valor con las primeras i preguntas y t segundos. Costo O(n · T).
 - Voraz: lo incluyo solo para comparar. Ordena por valor por segundo y mete lo que cabe.
 
-El código está en simulacro_tiempo.py (sin comentarios) y en simulacro_tiempo_explicado.py (el mismo código, explicado). La salida completa está en salida.txt y los datos en resultados.csv. Para correrlo: python simulacro_tiempo.py
+El código está en simulacro_tiempo.py. La salida completa está en salida.txt y los datos en resultados.csv. Para correrlo: python simulacro_tiempo.py
 
 **<ins>2. Protocolo</ins>**
 
-- Datos: preguntas generadas al azar con semilla fija. Cada pregunta dura entre 50 y 130 segundos, como las preguntas reales del H1, y tiene un valor de 1 a 10. El límite es la mitad del tiempo total, para que no entren todas.
+- Datos: preguntas generadas al azar con semilla fija. Cada pregunta dura entre 50 y 130 segundos, según la estimación de estrategia.md, y tiene un valor de 1 a 10. El límite es la mitad del tiempo total, para que no entren todas.
 - Mismo resultado: antes de medir, el programa comprueba que la fuerza bruta y la dinámica den el mismo valor. También lo comprobé con 300 grupos de 12 preguntas al azar: coincidieron las 300 veces.
 - Medición: 1 corrida para calentar, 3 corridas medidas y el promedio.
 - Tamaños: 16, 18, 20 y 22 preguntas. Cada 2 preguntas más hay 4 veces más combinaciones.

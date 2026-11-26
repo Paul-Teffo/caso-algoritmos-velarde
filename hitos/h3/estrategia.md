@@ -17,13 +17,13 @@ Por eso estas dos operaciones se mejoran con estructuras de datos (como hice en 
 
 Hay una decisión que se repite en cada simulacro: qué preguntas poner cuando el tiempo es limitado. Hoy se eligen al azar, pero en un simulacro de repaso conviene elegir bien.
 
-- Cada pregunta tiene un tiempo (los segundos que tarda el estudiante en resolverla) y un valor de repaso de 1 a 10 (más alto si la falló antes o si su materia es importante).
+- Cada pregunta tiene un tiempo (los segundos que tarda el estudiante en resolverla) y un valor de repaso de 1 a 10. El sistema hoy no guarda ese valor: es una propuesta mía (por ejemplo, más alto si el estudiante ya la falló antes).
 - El estudiante tiene un tiempo límite.
 - Objetivo: lograr el mayor valor total sin pasarse del tiempo. Cada pregunta entra entera o no entra.
 
 Este es el problema de la mochila 0/1: el tiempo es el "peso" y el valor de repaso es el "valor".
 
-¿Todas las preguntas tardan lo mismo? Revisé las 20 preguntas reales del H1: entre enunciado y opciones tienen de 93 a 399 caracteres. Una pregunta corta se lee en unos 55 segundos y una larga en unos 130. O sea, el tiempo real no es igual para todas, aunque hoy el sistema le dé 60 segundos a cada una.
+¿Todas las preguntas tardan lo mismo? No. En las 20 preguntas reales del H1, entre enunciado y opciones hay de 93 a 399 caracteres, así que algunas son unas cuatro veces más largas que otras. No medí cuánto tarda cada una: supongo que una pregunta corta toma unos 50 segundos y un caso clínico largo unos 130. Hoy el sistema le da 60 segundos a todas.
 
 **<ins>3. Si todas las preguntas duran 60 segundos (como hoy): sirve el voraz</ins>**
 

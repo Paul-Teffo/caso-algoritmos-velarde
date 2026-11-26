@@ -15,7 +15,7 @@ Los dos diccionarios se arman una sola vez, cuando se carga el banco de pregunta
 
 - En corregir y armar solo busco por clave exacta: "la pregunta 1520" o "las preguntas de la materia 4". No necesito orden, y para eso la tabla hash es lo más rápido: O(1) por búsqueda.
 - Un árbol de búsqueda también funcionaría, pero cada búsqueda cuesta O(log n), y aquí no aprovecharía el orden que ofrece.
-- Una lista simple obliga a recorrer todo: O(n) por búsqueda. Es lo que hace el sistema hoy.
+- Una lista simple obliga a recorrer todo: O(n) por búsqueda. Es la versión ingenua con la que comparo. El sistema real no recorre una lista, pero hace una consulta a la base de datos por cada respuesta, o sea k búsquedas por separado (H1).
 
 Para ver el puesto de una nota sí hace falta orden. Ahí usaría una lista de notas ordenada con búsqueda binaria (el módulo bisect de Python): encontrar cuántas notas son mayores cuesta O(log N). Esta operación se hace una sola vez por simulacro, así que no es la que mido.
 
@@ -23,7 +23,7 @@ Para ver el puesto de una nota sí hace falta orden. Ahí usaría una lista de n
 
 n = preguntas del banco, k = preguntas del examen, c = preguntas de las materias elegidas, N = notas guardadas.
 
-| Operación | Cuántas veces la hago | Estructura | Costo O elegida | Costo O hoy (lista) |
+| Operación | Cuántas veces la hago | Estructura | Costo O elegida | Costo O ingenua (lista) |
 |---|---|---|---|---|
 | Corregir (buscar cada pregunta por id) | k por simulacro (hasta 100) | diccionario correctas | O(1) por búsqueda, O(k) el examen | O(n) por búsqueda, O(k · n) el examen |
 | Armar el examen | 1 o más por simulacro | diccionario por_materia | O(c + k) | O(n) |

@@ -9,7 +9,7 @@ Atender un simulacro completo: armar un examen de 100 preguntas de Pediatría y 
 - Versión ingenua: todo en una lista. Para armar, recorre todo el banco y mezcla las preguntas. Para corregir, recorre el banco por cada respuesta.
 - Versión elegida: dos diccionarios. Para armar, va directo a la lista de cada materia. Para corregir, busca cada pregunta directo por su id.
 
-El código está en simulacro.py (sin comentarios) y en simulacro_explicado.py (el mismo código, explicado). La salida completa está en salida.txt y los datos en resultados.csv. Para correrlo: python simulacro.py
+El código está en simulacro.py. La salida completa está en salida.txt y los datos en resultados.csv. Para correrlo: python simulacro.py
 
 **<ins>2. Protocolo</ins>**
 

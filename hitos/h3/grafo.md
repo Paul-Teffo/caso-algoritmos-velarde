@@ -33,9 +33,9 @@ Ejemplo con el contraejemplo del H3 (límite de 120 s; preguntas de 70 s/8, 60 s
 
 El voraz toma la arista más pesada del primer paso (+8) y después ya no le queda camino bueno. El camino más largo encuentra el de 12.
 
-Tamaño del grafo: (n + 1)·(T + 1) nodos y como máximo 2·n·(T + 1) aristas. En el ejemplo son 484 nodos y 536 aristas. Recorrer un DAG en orden cuesta O(nodos + aristas) = **O(n · T)**, que es exactamente el costo de la dinámica del H3. O sea, llenar la tabla y buscar el camino más largo en este grafo son lo mismo.
+Tamaño del grafo: (n + 1)·(T + 1) nodos y como máximo 2·n·(T + 1) aristas. En el ejemplo son 4 · 121 = 484 nodos. Recorrer un DAG en orden cuesta O(nodos + aristas) = **O(n · T)**, que es exactamente el costo de la dinámica del H3. O sea, llenar la tabla y buscar el camino más largo en este grafo son lo mismo.
 
-Lo comprobé con un script: en el ejemplo da 12, y en 300 grupos de 12 preguntas al azar (de 50 a 130 s, valor de 1 a 10) el camino más largo y la tabla del H3 dieron el mismo valor las 300 veces.
+En el ejemplo el camino más largo vale 12, lo mismo que da la tabla de la dinámica en [salida.txt](salida.txt).
 
 **<ins>3. Grafo 2: preguntas que se fallan juntas</ins>**
 
@@ -54,8 +54,6 @@ Qué se puede hacer con él:
 - **Encontrar temas débiles:** los componentes conexos (con BFS o DFS) agrupan preguntas que se fallan juntas, aunque sean de materias distintas. Cuesta O(V + E).
 
 Cómo guardarlo: como **lista de adyacencia** en un diccionario de diccionarios (pregunta → {vecina: peso}), que es la misma idea de tabla hash del H2. Una matriz de 2 877 × 2 877 tendría más de 8 millones de casillas, casi todas en 0, porque cada simulacro toca pocas preguntas.
-
-Costo de armarlo: si un simulacro tiene f preguntas falladas, agrega f·(f - 1)/2 aristas. Con el promedio de 22 preguntas por simulacro es poco; con 100 preguntas y muchas falladas serían hasta 4 950 pares por simulacro, así que conviene armarlo de una vez (por ejemplo cada noche) y no en cada envío.
 
 **Antes de usarlo hay que arreglar la corrección** ([H1](../../README.md), sección 5): hoy se compara la letra que manda la pantalla con el texto de la respuesta, así que ninguna respuesta sale correcta y todas parecerían "falladas". Con ese error el grafo tendría aristas entre todas las preguntas de cada simulacro y no diría nada.
 
